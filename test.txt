@@ -1,0 +1,58 @@
+模板架构搭建
+    首页      闪购      购物车     我的      登录      注册
+    home     market    cart      mine     login     register
+
+    base.html
+        base_main.html
+            home.html       首页
+            market.html     闪购
+            cart.html       购物车
+            mine.html       我的
+        base_user.html
+            login.html      登录
+            register.html   注册
+
+
+静态资源架构搭建
+    static
+        所有的页面都会用到的静态文件
+        css
+        js
+        img
+        fonts
+        upload
+
+        部分页面使用的部分静态文件
+        axf
+            mian
+                home
+                    css
+                        home.css
+                    js
+                        home.js
+                market
+                    css
+                        market.css
+                    js
+                        market.js
+                cart
+                    css
+                        cart.css
+                    js
+                        cart.js
+                mine
+                    css
+                        mine.css
+                    js
+                        mine.js
+            user
+                login
+                    css
+                        login.css
+                    js
+                        login.js
+                register
+                    css
+                        register.css
+                    js
+                        register.js

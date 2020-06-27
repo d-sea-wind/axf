@@ -1,0 +1,100 @@
+{% extends 'base_main.html' %}
+
+{% load static %}
+
+{% block title %}
+    {{ block.super }}
+    购物车
+{% endblock %}
+
+{% block ext_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'axf/main/cart/css/cart.css' %}">
+{% endblock %}
+
+{% block content %}
+    {{ block.super }}
+    <div id="cart">
+        <h3>购物车</h3>
+        <div class="full">
+            <section>
+                {# 收货信息 #}
+                <ul>
+                    <li>收货人:action</li>
+                    <li>电 话:18888888888</li>
+                    <li>收获地址:上海市宝山区同济支路199号智慧7立方3号楼三楼千锋教育</li>
+                </ul>
+                {# 凑单专区 #}
+                <div class="bill">
+                    <p>闪送超市</p>
+                    <p>0元起送,22点以前可以送到嘴里</p>
+                    <a href="">凑单专区</a>
+                </div>
+                {# 可预定送货时间 #}
+                <div class="delivery">
+                    <span>收获时间</span>
+                    <span>1小时送达</span>
+                    <a href="">可预定></a>
+                </div>
+                {# 收获备注 #}
+                <div class="delivery">
+                    <span>收获备注</span>
+                    <input type="text">
+                </div>
+                {% for cart in carts %}
+                    {# 商品信息 #}
+                    <div class="menuList" cartid="{{ cart.id }}">
+                        {# 选中与未选中 #}
+                        <div class="confirm">
+                            <span>
+                                {% if cart.c_is_select %}
+                                    <span>✔</span>
+                                    {% else %}
+                                    <span></span>
+                                {% endif %}
+                            </span>
+                        </div>
+                        {# 商品信息展示 #}
+                        <a href="">
+                            <img src="/static{{ cart.c_goods.productimg }}" alt="">
+                            <p>{{ cart.c_goods.productlongname }}</p>
+                            <p class="presentPrice">{{ cart.c_goods.price }}</p>
+                        </a>
+                        {# 商品数量加减 #}
+                        <section>
+                            <button class="subShopping">-</button>
+                            <span>{{ cart.c_goods_num }}</span>
+                            <button class="addShopping">+</button>
+                        </section>
+                    </div>
+                {% endfor %}
+                <div class="payTheBill">
+                    {# 全选✔ #}
+                    <div class="all_select" id="all_select">
+                        <span>
+                            {% if is_all_select %}
+                                <span>✔</span>
+                                {% else %}
+                                <span></span>
+                            {% endif %}
+                        </span>
+                    </div>
+                    {# 总计 #}
+                    <p>
+                        <span>全选</span>
+                        <span>共计:</span>
+                        <span id="total_price">{{ total_price }}</span>
+                    </p>
+                    <button class="btn" id="make_order">下单</button>
+                </div>
+
+            </section>
+        </div>
+    </div>
+{% endblock %}
+
+{% block ext_js %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'axf/main/cart/js/cart.js' %}"></script>
+{% endblock %}
+
